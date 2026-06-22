@@ -97,4 +97,4 @@ feature importance, and the decision tree.
 
 ## Author
 
-B.Tech CSE Student
+Krishna Tomar 
