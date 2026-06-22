@@ -63,12 +63,12 @@ column (`cardio`).
 
 | Feature | Type | Description |
 |---|---|---|
-| age | Numerical | Age in days, converted to years |
-| gender | Categorical | 1 or 2 |
-| height | Numerical | Height in cm |
-| weight | Numerical | Weight in kg |
-| ap_hi | Numerical | Systolic blood pressure |
-| ap_lo | Numerical | Diastolic blood pressure |
+| age(in days) | Numerical | Age in days, converted to years |
+| Gender(1 : woman | 2 : Man) | Categorical | 1 or 2 |
+| Height(in cm) | Numerical | Height in cm |
+| weight(in kg) | Numerical | Weight in kg |
+| sys_pressure | Numerical | Systolic blood pressure |
+| dia_pressure | Numerical | Diastolic blood pressure |
 | cholesterol | Categorical | 1 = normal, 2 = above normal, 3 = well above normal |
 | gluc | Categorical | Glucose level, same scale as cholesterol |
 | smoke | Categorical | 1 = smoker, 0 = non-smoker |
@@ -89,10 +89,10 @@ The raw dataset required cleaning before it could be used reliably:
 2. **Age conversion**: Age was stored in days. It was converted to years
    (`age / 365.25`) since years are easier to interpret and explain.
 3. **Blood pressure errors**: Some rows contained impossible values for
-   `ap_hi` and `ap_lo`, including negative numbers and values in the
+   `sys_pressure` and `dia_pressure`, including negative numbers and values in the
    thousands (likely data entry mistakes, such as a misplaced decimal
-   point). Rows were kept only if `ap_hi` was between 70–250, `ap_lo` was
-   between 40–200, and `ap_hi` was greater than `ap_lo` (systolic pressure
+   point). Rows were kept only if `sys_pressure` was between 70–250, `dia_pressure` was
+   between 40–200, and `sys_pressure` was greater than `dia_pressure` (systolic pressure
    should always be higher than diastolic).
 4. **Height/weight outliers**: A small number of rows had implausible
    height (under 100cm) or weight (under 30kg) values and were removed.
@@ -172,8 +172,8 @@ training data and perform worse on new patients.
 - **Cholesterol**: Patients with "above normal" or "well above normal"
   cholesterol show a higher proportion of disease.
 - **Blood pressure**: Patients with disease tend to have higher systolic
-  blood pressure (`ap_hi`), visible clearly in the box plot comparison.
-- **Correlation heatmap**: `ap_hi` (0.43), `ap_lo` (0.34), `age` (0.24),
+  blood pressure (`sys_pressure`), visible clearly in the box plot comparison.
+- **Correlation heatmap**: `sys_pressure` (0.43), `dia_pressure` (0.34), `age` (0.24),
   and `cholesterol` (0.22) show the strongest positive correlation with
   the target. Lifestyle factors (`smoke`, `alco`, `active`) show very weak
   correlation with the target in this dataset.
@@ -206,7 +206,7 @@ the disease class at the cost of more false positives.
 
 | Rank | Feature | Importance |
 |---|---|---|
-| 1 | ap_hi (systolic BP) | ~0.78 |
+| 1 | sys_pressure (systolic BP) | ~0.78 |
 | 2 | age | ~0.12 |
 | 3 | cholesterol | ~0.08 |
 | 4 | gluc | ~0.01 |
