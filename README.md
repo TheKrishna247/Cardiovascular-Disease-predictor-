@@ -28,8 +28,8 @@ predict on a new patient.
 | gender | 1 or 2 (coding not specified by dataset source) |
 | height | Height in cm |
 | weight | Weight in kg |
-| ap_hi | Systolic blood pressure |
-| ap_lo | Diastolic blood pressure |
+| sys_pressure | Systolic blood pressure |
+| dia_pressure | Diastolic blood pressure |
 | cholesterol | 1 = normal, 2 = above normal, 3 = well above normal |
 | gluc | Glucose level, same scale as cholesterol |
 | smoke | 1 = smoker, 0 = non-smoker |
@@ -40,7 +40,7 @@ predict on a new patient.
 ## Features Used
 
 All 11 features are used directly — age (in years), gender, height, weight,
-ap_hi, ap_lo, cholesterol, gluc, smoke, alco, active.
+sys_pressure, dia_pressure, cholesterol, gluc, smoke, alco, active.
 
 ## Technologies
 
